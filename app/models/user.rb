@@ -38,4 +38,7 @@ class User < ApplicationRecord
     user.save!
     return user
   end
+
+  def self.get_facebook_user_data(access_token)
+  end
 end
