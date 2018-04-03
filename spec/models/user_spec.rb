@@ -1,7 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it "should get_facebook_user_data work" do
-    expect(User.get_facebook_user_data('access_token')).to eq('abc')
+  context "#get_facebook_user_data" do
+    it "should vcr version work" do
+      VCR.use_cassette 'get facebook user data' do
+        expect(User.get_facebook_user_data('ACCESS_TOKEN')).to eq({
+          "name" => "FB_NAME",
+          "id" => "FB_ID"
+        })
+      end
+    end
   end
 end
